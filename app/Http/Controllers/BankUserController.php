@@ -33,7 +33,7 @@ class BankUserController extends Controller
                 Session::put('user_id', $this->user->id);
                 Session::put('user_name', $this->user->name);
 
-                return view('user.dashboard',['bankUser'=>BankUser::find($this->user->id)]);
+                return redirect('/user-dashboard');
             }
 
             else
@@ -51,7 +51,7 @@ class BankUserController extends Controller
 
 
     public function dashboard(){
-        return view('user.dashboard');
+        return view('user.dashboard',['bankUser'=>BankUser::find(Session::get("user_id"))]);
     }
 
 
@@ -63,13 +63,13 @@ class BankUserController extends Controller
     }
 
     public function transactionShow(){
-        return view('user.transaction');
+        return view('user.transaction',['user'=>BankUser::find(Session::get("user_id"))]);
     }
     public function transaction(Request $request){
         $this->user = BankUser::find($request->user_id);
         BankUser::updateUser($request->user_id, $request);
         Transaction::transaction($request);
-        return view('user.dashboard',['bankUser'=>BankUser::find($this->user->id)]);
+        return redirect('/user-dashboard');
     }
 
 

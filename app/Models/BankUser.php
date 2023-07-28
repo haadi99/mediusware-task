@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BankUser extends Model
 {
-    public static $user;
+    public static $user, $amount;
     use HasFactory;
 
     public static function createUser($request){
@@ -24,11 +24,31 @@ class BankUser extends Model
 
     public static function updateUser($id, $request){
         self::$user = BankUser::find($id);
+
         if ($request->transaction_type == 'deposit'){
             self::$user->balance = self::$user->balance + $request->amount;
         }
         elseif ($request->transaction_type == 'withdraw'){
-            self::$user->balance = self::$user->balance - $request->amount;
+            if(self::$user->account_type == 'individual'){
+                if($request->amount > 1000){
+                   $request->amount += ($request->amount - 1000 ) * 0.015;
+                   self::$user->balance = self::$user->balance - $request->amount;
+                }
+                else{
+                    self::$user->balance = self::$user->balance - $request->amount;
+                }
+            }
+            elseif (self::$user->account_type == 'business'){
+
+                if($request->amount > 50000) {
+                    $request->amount += $request->amount * 0.015;
+                    self::$user->balance = self::$user->balance - $request->amount;
+                }
+                else{
+                    $request->amount += $request->amount * 0.025;
+                    self::$user->balance = self::$user->balance - $request->amount;
+                }
+            }
         }
         self::$user->save();
     }
