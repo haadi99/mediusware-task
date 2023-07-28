@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->enum('transaction_type',['']);
+            $table->enum('transaction_type',['deposit','withdraw']);
             $table->double('amount');
             $table->decimal('fee');
             $table->date('date');

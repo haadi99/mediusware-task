@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bank_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('account_type');
+            $table->enum('account_type',['business','individual']);
             $table->double('balance');
             $table->string('email');
             $table->string('password');
