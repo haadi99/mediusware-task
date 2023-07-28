@@ -27,7 +27,6 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Fee</label>
-
                             <input type="number" name="fee" value="{{$user->account_type == 'business'? 0.025 : 0.015 }}"  placeholder="Fee" class="form-control">
 
                         </div>

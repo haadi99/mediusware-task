@@ -62,6 +62,12 @@ class BankUserController extends Controller
         return view('user.deposit');
     }
 
+    public function allTransaction(){
+        return view('user.all-transaction',['transactions'=>Transaction::all()]);
+    }
+
+
+
     public function transactionShow(){
         return view('user.transaction',['user'=>BankUser::find(Session::get("user_id"))]);
     }

@@ -6,7 +6,8 @@
                 <div class="card p-5">
                     <h4>User Dashboard</h4>
                     <h4 class="text-center">Balance: ${{$bankUser->balance}}</h4>
-                    <a href="{{route('transaction')}}" class="btn btn-info">Make Transaction</a>
+                    <a href="{{route('transaction')}}" class="btn btn-outline-success   ">Make Transaction</a>
+                    <a href="{{route('all-transaction')}}" class="btn btn-info mt-3">All Transaction</a>
                     <a href="{{route('deposit.transaction',['id'=>$bankUser->id])}}" class="btn btn-success mt-3">See all deposit transaction</a>
                     <a href="{{route('withdraw.transaction',['id'=>$bankUser->id])}}" class="btn btn-warning mt-3">See all withdraw transaction</a>
                 </div>

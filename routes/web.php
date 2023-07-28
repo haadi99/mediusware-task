@@ -17,13 +17,14 @@ use App\Http\Controllers\AdminController;
 
 Route::get('create-user',[BankUserController::class,"index"])->name('add.user');
 Route::post('add-user',[BankUserController::class,"create"])->name('create.user');
-Route::get('/user-login',[BankUserController::class,"loginShow"])->name('login.user');
+Route::get('/',[BankUserController::class,"loginShow"])->name('login.user');
 Route::post('/user-login',[BankUserController::class,"userLogin"])->name('user.login');
 Route::middleware(['bankUserAuth'])->group(function () {
     Route::get('/user-dashboard', [BankUserController::class, "dashboard"])->name('user-dashboard');
     Route::get('deposit', [BankUserController::class, "depositView"])->name('deposit-view');
     Route::post('deposit', [BankUserController::class, "deposit"])->name('deposit');
     Route::get('/transaction', [BankUserController::class, 'transactionShow'])->name('transaction-show');
+    Route::get('/all-transaction', [BankUserController::class, 'allTransaction'])->name('all-transaction');
     Route::post('/transaction', [BankUserController::class, 'transaction'])->name('transaction');
     Route::get('/deposit/{id}', [BankUserController::class, 'depositTransaction'])->name('deposit.transaction');
     Route::get('/withdrawal/{id}', [BankUserController::class, 'withdrawTransaction'])->name('withdraw.transaction');
