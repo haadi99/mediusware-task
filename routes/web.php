@@ -28,6 +28,7 @@ Route::middleware(['bankUserAuth'])->group(function () {
     Route::post('/transaction', [BankUserController::class, 'transaction'])->name('transaction');
     Route::get('/deposit/{id}', [BankUserController::class, 'depositTransaction'])->name('deposit.transaction');
     Route::get('/withdrawal/{id}', [BankUserController::class, 'withdrawTransaction'])->name('withdraw.transaction');
+    Route::post('/user-logout', [BankUserController::class, 'userLogout'])->name('user-logout');
 });
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');

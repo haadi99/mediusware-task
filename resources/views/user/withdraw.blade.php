@@ -1,7 +1,7 @@
 @extends('master')
 @section('body')
 <div class="container">
-    <div class="row">
+    <div class="row py-5">
         <div class="col-md-8 mx-auto">
             <div class="card">
                 <table class="table">

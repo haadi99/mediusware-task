@@ -89,4 +89,12 @@ class BankUserController extends Controller
         return view('user.withdraw',['withdraws'=>$this->transaction]);
 
     }
+
+
+    public function userLogout(){
+        Session::forget('user_id');
+        Session::forget('user_name');
+
+        return redirect('/');
+    }
 }
